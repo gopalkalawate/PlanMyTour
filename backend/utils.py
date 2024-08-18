@@ -25,7 +25,7 @@ index_name = os.environ['INDEX_NAME'] # citiesinfo
 
 class Utils:
     #get relevent context
-    def __releventContext(prompt,city):
+    def __releventContext(self, prompt,city):
         pc = Pinecone(os.environ['PINECONE_API_KEY'])
         e = OpenAIEmbeddings()
         index = pc.Index(index_name)
@@ -36,14 +36,13 @@ class Utils:
         return context
     
     #provide context to LLM
-    def __output(userPrompt,context):
+    def __output(self, userPrompt,context):
         # return 0
 
-        llm=ChatGroq(groq_api_key='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',model_name="Llama3-8b-8192",temperature=0.5) # tempreature means creativity
+        llm=ChatGroq(groq_api_key='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',model_name="Llama3-8b-8192",temperature=1) # tempreature means creativity
 
         prompt=ChatPromptTemplate.from_template(
             """
-            Answer the questions based on the provided context only.
             Please provide the most accurate response based on the question
             <context>
             {context}
@@ -64,10 +63,5 @@ class Utils:
         
     @staticmethod
     def finalInputAndOutput(city,userPrompt): #you need to call just this function
-        context = Utils.__releventContext(userPrompt,city)
-        return Utils.__output(userPrompt,context).content
-
-
-
-
-
+        context = Utils.__releventContext(Utils, userPrompt,city)
+        return Utils.__output(Utils, userPrompt,context).content
