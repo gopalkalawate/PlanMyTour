@@ -3,7 +3,10 @@ import React from 'react'
 
 export const SearchBar = ({onSearch}) => {
   return (
-    <div style={{ padding: '20px', background: '#0a75ad', color: '#fff' }}>
+    <div style={{ padding: '20px', background: '#0a75ad', color: '#fff',display:'flex' }}>
+        <div style={{padding:"0 20px"}}>
+           <img src="/logo.png" alt="logo" style={{height:'65px',mixBlendMode:'multiply'}}/>
+        </div>
         <input
         type="text"
         placeholder="Search cities..."
